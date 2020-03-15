@@ -1,0 +1,80 @@
+1.安装docker
+
+	$ curl -fsSL https://get.docker.com -o get-docker.sh
+
+	$ sudo sh get-docker.sh
+
+	免sudo权限
+	sudo groupadd docker
+
+	sudo gpasswd -a ${USER} docker
+
+	sudo service docker restart
+
+	newgrp - docker
+
+	测试：docker run hello-world
+
+2.安装docker-compose
+
+	$ sudo curl -L https://github.com/docker/compose/releases/download/1.24.0-rc1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+	$ sudo chmod +x /usr/local/bin/docker-compose（授权）
+
+	$ docker-compose --version（验证版本）
+
+	解决镜像垃取慢问题：
+		在 /etc/docker/daemon.json 文件中添加以下参数（没有该文件则新建）：
+		{
+		  "registry-mirrors": ["https://9cpn8tt6.mirror.aliyuncs.com"]
+		}
+		服务重启：
+		systemctl daemon-reload
+		systemctl restart docker
+
+3.部署prometheus
+
+	撰写docker-compose.yml(挂载时可挂载整个目录)
+	撰写prometheus.yml
+	docker-compose up -d
+	
+4. 使用node exporter收集监控数据
+	
+	docker-compose.yml 添加配置，垃取node-exporter服务镜像,并指定端口
+	prometheus添加job
+
+5.安装配置grafana
+	docker-compose.yml 添加配置，垃取grafana服务镜像,并指定端口
+
+
+8919 10262  11323
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
