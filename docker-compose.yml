@@ -27,7 +27,7 @@ services:
         ports:
           - '9104:9104'
         environment:
-          - DATA_SOURCE_NAME=root:shengdian@(39.100.56.253:12138)/
+           - DATA_SOURCE_NAME=root:123456@(localhost:3306)/
         restart: always
     prometheus:
         container_name: prometheus
