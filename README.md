@@ -160,19 +160,26 @@
 
 os监控
 
-![](https://github.com/spider1998/monitor/blob/master/os.jpg)
+![image](https://github.com/spider1998/monitor/blob/master/os.jpg)
 
 mysql监控
 
-![](https://github.com/spider1998/monitor/blob/master/mysql.jpg)
+![image](https://github.com/spider1998/monitor/blob/master/mysql.jpg)
 
 docker监控
 
-![](https://github.com/spider1998/monitor/blob/master/docker.jpg)
+![image](https://github.com/spider1998/monitor/blob/master/docker.jpg)
+  
+
+--
+ 可按此方法监控其他服务（redis,mobgodb等），目前只做到监控，后续将持续加入告警，邮件发送，规则等高级功能...
   
   
-  
-  
-  
-  
-  
+##快速运行：
+
+1.git clone https://github.com/spider1998/monitor.git && cd monitor
+
+2.docker-compose up -d （docker-compose ps 看服务是否正常运行）
+
+访问localhost:9090查看job是否启动;访问localhost:3000进入grafana进行配置即可（详细配置教程见官方文档 https://grafana.com/docs/）
+
