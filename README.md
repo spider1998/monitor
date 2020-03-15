@@ -65,6 +65,8 @@
   ```
 	docker-compose up -d
 	
+//targets中可直接用容器名：端口号对应服务
+
 4. 使用node exporter收集os监控数据
 	
 	docker-compose.yml 添加配置，垃取node-exporter服务镜像,并指定端口
@@ -128,7 +130,7 @@
  ```
  至此，所有数据源服务已经提供，服务启动后可通过浏览器访问对应端口可查看结果，可在localhost:9090/targets下看所有job状态
  接下来将数据进行可视化展示
-5.安装配置grafana
+7.安装配置grafana
 	docker-compose.yml 添加配置，垃取grafana服务镜像,并指定端口
   ```yml
   grafana:
@@ -145,12 +147,28 @@
   服务启动后浏览器访问localhost:3000可跳转到登录页面，用户名admin密码为${GF_SECURITY_ADMIN_PASSWORD}，未指定则默认为admin
   
   配置grafana:
+  
   1. create datasource :name自定义，type选prometheus,url填写http://localhost:9090; access选browser;保存并测试
+  
   2.导入模板，可自定义添加画板或导入官方模板https://grafana.com/grafana/dashboards（填入id即可）
-    本次测试模板：os:8919  mysql:
+  
+    //本次测试模板：os:8919  mysql:11323 docker:179 
+    
   3.展示数据，完成部署。
   
-  
+8.最终效果
+
+os监控
+
+![](https://github.com/spider1998/monitor/blob/master/os.jpg)
+
+mysql监控
+
+![](https://github.com/spider1998/monitor/blob/master/mysql.jpg)
+
+docker监控
+
+![](https://github.com/spider1998/monitor/blob/master/docker.jpg)
   
   
   
