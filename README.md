@@ -178,7 +178,7 @@ docker监控
 
 1.git clone https://github.com/spider1998/monitor.git && cd monitor
 
-2.docker-compose up -d （docker-compose ps 看服务是否正常运行）
+2.docker-compose up -d （docker-compose ps 看服务是否正常运行）(mysql连接在docker-compose.yml中修改)
 
 	访问localhost:9090查看job是否启动;访问localhost:3000进入grafana进行配置即可（详细配置教程见官方文档 https://grafana.com/docs/）
 
