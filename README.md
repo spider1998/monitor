@@ -21,7 +21,7 @@
 	测试：docker run hello-world
 
 2. 安装docker-compose
-
+ 
 	$ sudo curl -L https://github.com/docker/compose/releases/download/1.24.0-rc1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
 	$ sudo chmod +x /usr/local/bin/docker-compose（授权）
@@ -129,7 +129,9 @@
         - 'cadvisor:8080'
  ```
  至此，所有数据源服务已经提供，服务启动后可通过浏览器访问对应端口可查看结果，可在localhost:9090/targets下看所有job状态
- 接下来将数据进行可视化展示
+ 
+`接下来将数据进行可视化展示`
+ 
 7. 安装配置grafana
 	docker-compose.yml 添加配置，垃取grafana服务镜像,并指定端口
   ```yml
