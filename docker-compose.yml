@@ -20,7 +20,7 @@ services:
     mysql-exporter:
         image: prom/mysqld-exporter
         ports:
-          - '9105:9104'
+          - '9104:9104'
         environment:
            - DATA_SOURCE_NAME=root:shengdian@(192.168.35.52:3309)/
         restart: always
@@ -33,7 +33,7 @@ services:
         command:
           - '--config.file=/etc/prometheus/prometheus.yml'
         ports:
-          - '9091:9090'
+          - '9090:9090'
     node-exporter:
         container_name: node-exporter
         image: prom/node-exporter
@@ -49,4 +49,4 @@ services:
         depends_on:
           - prometheus
         ports:
-          - '3001:3000'
+          - '3000:3000'
