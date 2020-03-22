@@ -20,8 +20,11 @@ scrape_configs:
     static_configs:
       - targets:
         - 'cadvisor:8080'
-  
-      
-          
- 
-
+  - job_name: 'redis'
+    static_configs:
+      - targets:
+        - 'redis-exporter:9121'
+  - job_name: 'manage'
+    static_configs:
+      - targets:
+        - 'localhost:10108'

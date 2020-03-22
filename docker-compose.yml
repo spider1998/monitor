@@ -1,16 +1,5 @@
 version: '2'
 services:
-    mysql:
-      image: mysql:5.7.16
-      ports:
-       - 3309:3306
-      volumes:
-       - ./mysql_data:/var/lib/mysql
-      environment:
-        - TZ=Asia/Shanghai
-        - MYSQL_ROOT_PASSWORD=123456
-      command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb_buffer_pool_load_at_startup=0 --innodb_buffer_pool_dump_at_shutdown=0
-      restart: unless-stopped
     cadvisor:
       image: google/cadvisor:latest
       ports:
@@ -22,23 +11,29 @@ services:
         - /var/lib/docker/:/var/ib/docker:ro
         - /dev/disk/:/dev/disk:ro
       restart: unless-stopped
+    redis-exporter:
+        image: oliver006/redis_exporter
+        ports: 
+          - '9121:9121'
+        environment:
+          - REDIS_ADDR=192.168.35.52:6390
     mysql-exporter:
         image: prom/mysqld-exporter
         ports:
-          - '9104:9104'
+          - '9105:9104'
         environment:
-           - DATA_SOURCE_NAME=root:123456@(localhost:3306)/
+           - DATA_SOURCE_NAME=root:shengdian@(192.168.35.52:3309)/
         restart: always
     prometheus:
         container_name: prometheus
         image: prom/prometheus
         restart: always
         volumes:
-          - ~/pro/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+          - ~/monitor/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
         command:
           - '--config.file=/etc/prometheus/prometheus.yml'
         ports:
-          - '9090:9090'
+          - '9091:9090'
     node-exporter:
         container_name: node-exporter
         image: prom/node-exporter
@@ -48,10 +43,10 @@ services:
         image: grafana/grafana
         volumes:
           - ~/pro/grafana_data:/varlib/grafana
+          - ~/monitor/grafana.ini:/etc/grafana/grafana.ini
         environment:
           - GF_SECURITY_ADMIN_PASSWORD=pass
         depends_on:
           - prometheus
         ports:
-          - '3000:3000'
-
+          - '3001:3000'
